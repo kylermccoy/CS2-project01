@@ -1,6 +1,8 @@
+package functions ;
+
 public abstract class Function {
 
-    public abstract float evaluate(float x) ;
+    public abstract double evaluate(double x) ;
 
     public abstract String toString(); ;
 

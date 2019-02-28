@@ -1,4 +1,6 @@
-public class Variable extends Function{
+package functions;
+
+public class Variable extends Function {
     private Variable(){}
     public final static Variable X = new Variable() ;
 
@@ -7,7 +9,7 @@ public class Variable extends Function{
         return "x" ;
     }
 
-    public float evaluate(float x){
+    public double evaluate(double x){
         return x ;
     }
 

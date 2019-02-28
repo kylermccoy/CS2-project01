@@ -1,4 +1,6 @@
-public class Constant extends Function{
+package functions;
+
+public class Constant extends Function {
     private int constant ;
     public Constant(int value){
         this.constant = value ;
@@ -8,7 +10,7 @@ public class Constant extends Function{
         return "" + constant + "" ;
     }
 
-    public float evaluate(float x){
+    public double evaluate(double x){
         return constant ;
     }
 

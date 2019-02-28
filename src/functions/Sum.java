@@ -1,3 +1,5 @@
+package functions;
+
 import java.util.ArrayList;
 
 public class Sum extends Function {
@@ -8,7 +10,7 @@ public class Sum extends Function {
             elements.add(func) ;
         }
     }
-    public float evaluate(float x){
+    public double evaluate(double x){
         float sum = 0 ;
         for(Function func: elements){
             sum += func.evaluate(x) ;
@@ -30,6 +32,7 @@ public class Sum extends Function {
         for(Function func: elements){
 
         }
+        return null ;
     }
 
     public double integral(double lower, double upper, int traps){
