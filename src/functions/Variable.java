@@ -19,8 +19,8 @@ public class Variable extends Function {
 
     public double integral(double lower, double upper, int traps){
         Variable var = Variable.X ;
-        double result = ((1/2) * var.evaluate((float)(upper)) * var.evaluate((float)(upper))) ;
-        result -= ((1/2) * var.evaluate((float)(lower)) * var.evaluate((float)(lower))) ;
+        double result = ((0.5) * var.evaluate(upper) * var.evaluate(upper)) ;
+        result -= ((0.5) * var.evaluate(lower) * var.evaluate(lower)) ;
         return result ;
     }
 

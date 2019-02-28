@@ -20,7 +20,7 @@ public class Constant extends Function {
 
     public double integral(double lower, double upper, int traps){
         Variable var = Variable.X ;
-        return (double)(var.evaluate((float)(upper)) - var.evaluate((float)(lower))) ;
+        return ((constant * var.evaluate(upper)) - (constant * var.evaluate(lower))) ;
     }
 
     public boolean isConstant(){
