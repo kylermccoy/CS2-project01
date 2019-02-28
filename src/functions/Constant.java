@@ -18,6 +18,7 @@ public class Constant extends Function {
         return new Constant(0) ;
     }
 
+    @Override
     public double integral(double lower, double upper, int traps){
         Variable var = Variable.X ;
         return ((constant * var.evaluate(upper)) - (constant * var.evaluate(lower))) ;
