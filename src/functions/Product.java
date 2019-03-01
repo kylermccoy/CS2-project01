@@ -7,8 +7,22 @@ public class Product extends Function {
 
     public Product(Function... terms){
         this.elements = new ArrayList<>() ;
+        boolean check = false ;
+        double constant = 1 ;
         for(Function func: terms){
-            elements.add(func) ;
+            if(func.isConstant()){
+                constant = constant * func.evaluate(0) ;
+            }else {
+                check = true ;
+                elements.add(func);
+            }
+        }
+        if(constant==0){
+            this.elements = new ArrayList<>() ;
+            elements.add(new Constant(0.0)) ;
+        }
+        if((constant>1)||(!check)){
+            elements.add(new Constant(constant)) ;
         }
     }
 
@@ -34,11 +48,11 @@ public class Product extends Function {
                 result = result + "" + func.toString();
                 check = true ;
             }
-            count++ ;
             if(check && count < size-1){
                 result = result + " * " ;
                 check = false ;
             }
+            count++ ;
         }
         if(!check){
             result = result + "" + constant_product ;
@@ -51,7 +65,24 @@ public class Product extends Function {
     }
 
     public Function derivative(){
-        return null ;
+        int index = 0 ;
+        ArrayList<Function> deriv = new ArrayList<>() ;
+        for(Function func: elements){
+            ArrayList<Function> deriv_list = new ArrayList<>();
+            int loop ;
+            for(loop = 0;loop<elements.size();loop++){
+                if(loop==index){
+                    deriv_list.add(elements.get(loop)) ;
+                }else{
+                    deriv_list.add(elements.get(loop).derivative()) ;
+                }
+            }
+            Function[] product_array = new Function[deriv_list.size()] ;
+            deriv.add(new Product(deriv_list.toArray(product_array))) ;
+            index++ ;
+        }
+        Function[] deriv_array = new Function[deriv.size()] ;
+        return new Sum(deriv.toArray(deriv_array)) ;
     }
 
     public double integral(double lower, double upper, int traps){

@@ -1,8 +1,8 @@
 package functions;
 
 public class Constant extends Function {
-    private int constant ;
-    public Constant(int value){
+    private double constant ;
+    public Constant(double value){
         this.constant = value ;
     }
     @Override

@@ -7,8 +7,16 @@ public class Sum extends Function {
 
     public Sum(Function... terms){
         this.elements = new ArrayList<>() ;
+        double sum = 0 ;
         for(Function func: terms){
-            elements.add(func) ;
+            if(func.isConstant()){
+                sum += func.evaluate(0.0) ;
+            }else {
+                elements.add(func);
+            }
+        }
+        if(sum > 0){
+            elements.add(new Constant(sum)) ;
         }
     }
     public double evaluate(double x){
