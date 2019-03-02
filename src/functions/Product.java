@@ -76,25 +76,19 @@ public class Product extends Function {
             return 0.0 ;
         }
         double delta = (upper-lower)/traps ;
-        ArrayList<Function> sum = new ArrayList<>() ;
-        double endpoint ;
+        int xoi ;
         double eval ;
-        Constant two = new Constant(2.0) ;
-        for(endpoint = lower; endpoint <= upper; endpoint += delta){
-            eval = this.evaluate(endpoint) ;
-            Constant eval_c = new Constant(eval) ;
-            if((endpoint==lower)||(endpoint==upper)){
-                sum.add(eval_c) ;
+        double sum = 0.0 ;
+        for(xoi = 0; xoi <= traps; xoi++){
+            eval = this.evaluate(lower + (xoi * delta)) ;
+            if((xoi==0)||(xoi==traps)){
+                sum += eval ;
             }else{
-                Product combine = new Product(two, eval_c) ;
-                sum.add(combine) ;
+                sum += (2 * eval) ;
             }
         }
-        Constant delta_d2 = new Constant(delta/2.0) ;
-        Function[] sums = new Function[sum.size()] ;
-        Sum summed = new Sum(sum.toArray(sums)) ;
-        Product answer = new Product(delta_d2, summed) ;
-        return answer.evaluate(1.0) ;
+        double width = delta/2 ;
+        return sum * width ;
     }
 
     public boolean isConstant(){
