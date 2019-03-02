@@ -8,16 +8,16 @@ public class Product extends Function {
     public Product(Function... terms){
         this.elements = new ArrayList<>() ;
         boolean check = false ;
-        double constant = 1 ;
+        double constant = 1.0 ;
         for(Function func: terms){
             if(func.isConstant()){
-                constant = constant * func.evaluate(0) ;
+                constant = constant * func.evaluate(0.0) ;
             }else {
                 check = true ;
                 elements.add(func);
             }
         }
-        if(constant==0){
+        if(constant==0.0){
             this.elements = new ArrayList<>() ;
             elements.add(new Constant(0.0)) ;
         }
@@ -27,9 +27,9 @@ public class Product extends Function {
     }
 
     public double evaluate(double x){
-        double product = 1 ;
+        double product = 1.0 ;
         for(Function func: elements){
-            product = product * func.evaluate(x) ;
+            product = (product * func.evaluate(x)) ;
         }
         return product ;
     }
@@ -37,28 +37,14 @@ public class Product extends Function {
     @Override
     public String toString(){
         String result = "( " ;
-        double constant_product = 1 ;
-        boolean check = false ;
         int count = 0 ;
         int size = elements.size() ;
-        for(Function func: elements){
-            if(func.isConstant()){
-                constant_product = constant_product * func.evaluate(0) ;
-            }else {
-                result = result + "" + func.toString();
-                check = true ;
-            }
-            if(check && count < size-1){
-                result = result + " * " ;
-                check = false ;
+        for(Function func: elements) {
+            result = result + "" + func ;
+            if (count < size - 1) {
+                result = result + " * ";
             }
             count++ ;
-        }
-        if(!check){
-            result = result + "" + constant_product ;
-        }
-        if(constant_product > 1 && check){
-            result = result + " * " + constant_product ;
         }
         result = result + " )" ;
         return result ;
@@ -72,9 +58,9 @@ public class Product extends Function {
             int loop ;
             for(loop = 0;loop<elements.size();loop++){
                 if(loop==index){
-                    deriv_list.add(elements.get(loop)) ;
-                }else{
                     deriv_list.add(elements.get(loop).derivative()) ;
+                }else{
+                    deriv_list.add(elements.get(loop)) ;
                 }
             }
             Function[] product_array = new Function[deriv_list.size()] ;
@@ -86,13 +72,37 @@ public class Product extends Function {
     }
 
     public double integral(double lower, double upper, int traps){
-        return 0 ;
+        if(traps<=0) {
+            return 0.0 ;
+        }
+        double delta = (upper-lower)/traps ;
+        ArrayList<Function> sum = new ArrayList<>() ;
+        double endpoint ;
+        double eval ;
+        Constant two = new Constant(2.0) ;
+        for(endpoint = lower; endpoint <= upper; endpoint += delta){
+            eval = this.evaluate(endpoint) ;
+            Constant eval_c = new Constant(eval) ;
+            if((endpoint==lower)||(endpoint==upper)){
+                sum.add(eval_c) ;
+            }else{
+                Product combine = new Product(two, eval_c) ;
+                sum.add(combine) ;
+            }
+        }
+        Constant delta_d2 = new Constant(delta/2.0) ;
+        Function[] sums = new Function[sum.size()] ;
+        Sum summed = new Sum(sum.toArray(sums)) ;
+        Product answer = new Product(delta_d2, summed) ;
+        return answer.evaluate(1.0) ;
     }
 
     public boolean isConstant(){
-        boolean result = false ;
+        boolean result = true ;
         for(Function func: elements){
-            result = func.isConstant() ;
+            if(!func.isConstant()){
+                result = false ;
+            }
         }
         return result ;
     }
