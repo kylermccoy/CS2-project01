@@ -15,7 +15,7 @@ public class Sum extends Function {
                 elements.add(func);
             }
         }
-        if(sum > 0.0){
+        if(sum != 0.0){
             elements.add(new Constant(sum)) ;
         }
     }
@@ -29,7 +29,7 @@ public class Sum extends Function {
 
     @Override
     public String toString(){
-        String result = "( " ;
+        String result = "" ;
         int count = 0 ;
         int size = elements.size() ;
         for(Function func: elements) {
@@ -39,7 +39,9 @@ public class Sum extends Function {
             }
             count++ ;
         }
-        result = result + " )" ;
+        if(count > 1) {
+            result = "( " + result + " )";
+        }
         return result ;
     }
 

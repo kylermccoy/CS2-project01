@@ -21,7 +21,7 @@ public class Product extends Function {
             this.elements = new ArrayList<>() ;
             elements.add(new Constant(0.0)) ;
         }
-        if((constant>1)||(!check)){
+        if((constant>1)||(!check)||(constant<1)){
             elements.add(new Constant(constant)) ;
         }
     }
@@ -36,7 +36,7 @@ public class Product extends Function {
 
     @Override
     public String toString(){
-        String result = "( " ;
+        String result = "" ;
         int count = 0 ;
         int size = elements.size() ;
         for(Function func: elements) {
@@ -46,7 +46,9 @@ public class Product extends Function {
             }
             count++ ;
         }
-        result = result + " )" ;
+        if(count > 1) {
+            result =  "( " + result + " )";
+        }
         return result ;
     }
 
