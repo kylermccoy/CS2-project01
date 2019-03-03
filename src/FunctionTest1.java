@@ -1,3 +1,10 @@
+/**
+ * FunctionTest1.java
+ * Author: Kyle McCoy krm7269@rit.edu
+ * CS Project 1
+ * test functions for equations based on the part 1 implementation
+ */
+
 import functions.* ;
 
 public class FunctionTest1 {
@@ -8,6 +15,7 @@ public class FunctionTest1 {
             System.exit( 1 );
         }
         Variable var = Variable.X;
+        // test 1
         Function test1 = new
                 Sum( var, var );
         System.out.println( "Function " + test1 );
@@ -17,7 +25,7 @@ public class FunctionTest1 {
         double iResult = 0.0;
         iResult = test1.integral( 10, 20, 1000000 );
         System.out.println( "Integral from 0 to 10: " + iResult + "\n" );
-
+        // test 2
         Function test2 = new
                 Sum( new Constant(0.0), var);
         System.out.println( "Function " + test2 );
@@ -27,7 +35,7 @@ public class FunctionTest1 {
         iResult = 0.0;
         iResult = test2.integral( 5, 25, 1000000 );
         System.out.println( "Integral from 5 to 25: " + iResult + "\n" );
-
+        // test 3
         Function test3 = new
                 Sum( new Constant(-99.0), var, var, new Constant(-24.00));
         System.out.println( "Function " + test3 );
@@ -37,7 +45,7 @@ public class FunctionTest1 {
         iResult = 0.0;
         iResult = test3.integral( -15, 5, 1000000 );
         System.out.println( "Integral from -15 to 5: " + iResult + "\n" );
-
+        // test 4
         Function test4 = new
                 Sum( new Constant(-15.0), new Constant(15.0));
         System.out.println( "Function " + test4 );
@@ -47,7 +55,7 @@ public class FunctionTest1 {
         iResult = 0.0;
         iResult = test4.integral( -1, 1, 1000000 );
         System.out.println( "Integral from -1 to 1: " + iResult + "\n" );
-
+        // test 5
         Function test5 = new
                 Sum( new Constant(-15.0), new Constant(15.0), var);
         System.out.println( "Function " + test5 );

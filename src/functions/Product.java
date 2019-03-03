@@ -1,10 +1,22 @@
+/**
+ * Product.java
+ * Author: Kyle McCoy krm7269@rit.edu
+ * CS Project 1
+ * implements the multiplication operation class
+ */
+
 package functions;
 
 import java.util.ArrayList;
 
 public class Product extends Function {
+    // ArrayList of functions
     private ArrayList<Function> elements ;
 
+    /**
+     * constructor for the product class
+     * @param terms array of functions to be multiplied
+     */
     public Product(Function... terms){
         this.elements = new ArrayList<>() ;
         boolean check = false ;
@@ -25,7 +37,11 @@ public class Product extends Function {
             elements.add(new Constant(constant)) ;
         }
     }
-
+    /**
+     * evaluates the value of the function
+     * @param x double to be applied to the function
+     * @return value of the derivative
+     */
     public double evaluate(double x){
         double product = 1.0 ;
         for(Function func: elements){
@@ -33,7 +49,10 @@ public class Product extends Function {
         }
         return product ;
     }
-
+    /**
+     * converts the function to string
+     * @return string
+     */
     @Override
     public String toString(){
         String result = "" ;
@@ -52,6 +71,10 @@ public class Product extends Function {
         return result ;
     }
 
+    /**
+     * solves the derivative of the function
+     * @return function using product rule
+     */
     public Function derivative(){
         int index = 0 ;
         ArrayList<Function> deriv = new ArrayList<>() ;
@@ -73,6 +96,13 @@ public class Product extends Function {
         return new Sum(deriv.toArray(deriv_array)) ;
     }
 
+    /**
+     * evaluates the value of the integral of the function
+     * @param lower the lower bound of the integral
+     * @param upper the upper bound of the integral
+     * @param traps number of trapezoids to be used
+     * @return double
+     */
     public double integral(double lower, double upper, int traps){
         if(traps<=0) {
             return 0.0 ;
@@ -92,7 +122,10 @@ public class Product extends Function {
         double width = delta/2 ;
         return sum * width ;
     }
-
+    /**
+     * checks if the function is a constant
+     * @return boolean
+     */
     public boolean isConstant(){
         boolean result = true ;
         for(Function func: elements){

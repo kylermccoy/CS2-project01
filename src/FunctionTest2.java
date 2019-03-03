@@ -1,3 +1,11 @@
+/**
+ * FunctionTest2.java
+ * Author: Kyle McCoy krm7269@rit.edu
+ * CS Project 1
+ * test functions for equations based on the part 2 implementation
+ */
+
+
 import functions.*;
 
 public class FunctionTest2 {
@@ -8,6 +16,7 @@ public class FunctionTest2 {
             System.exit( 1 );
         }
         Variable var = Variable.X;
+        // test 1
         Function test1 = new
                 Sum( new Product(var ,var), new Product(var, new Constant(2.0)), new Constant(1.0) );
         System.out.println( "Function " + test1 );
@@ -19,7 +28,7 @@ public class FunctionTest2 {
         System.out.println( "Integral from 0 to 10 with 10 traps (Approximately): " + iResult );
         iResult = test1.integral( 0.0, 10.0, 100 );
         System.out.println( "Integral from 0 to 10 with 100 traps (Approximately): " + iResult + "\n" );
-
+        // test 2
         Function test2 = new
                 Product( new Product(var ,new Constant(2.0)));
         System.out.println( "Function " + test2 );
@@ -29,7 +38,7 @@ public class FunctionTest2 {
         iResult = 0.0;
         iResult = test2.integral( 0.0, 4.0, 7 );
         System.out.println( "Integral from 0 to 4 with 7 traps (Approximately): " + iResult + "\n");
-
+        // test 3
         Function test3 =
                 new Product(var, var, var, var, new Constant(14.0));
         System.out.println( "Function " + test3 );
@@ -39,7 +48,7 @@ public class FunctionTest2 {
         iResult = 0.0;
         iResult = test3.integral( 9.0, 15.0, 200 );
         System.out.println( "Integral from 9 to 15 with 200 traps (Approximately): " + iResult + "\n");
-
+        // test 4
         Function test4 =
                 new Product(var, var, new Sine(new Product(var, new Constant(2.0))));
         System.out.println( "Function " + test4 );
@@ -49,7 +58,7 @@ public class FunctionTest2 {
         iResult = 0.0;
         iResult = test4.integral( 0.0, 15.0, 200 );
         System.out.println( "Integral from 0 to 15 with 200 traps (Approximately): " + iResult + "\n");
-
+        // test 5
         Function test5 =
                 new Product(new Constant(2.0), new Sine(var), new Constant(3.0));
         System.out.println( "Function " + test5 );
