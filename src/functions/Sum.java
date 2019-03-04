@@ -19,14 +19,16 @@ public class Sum extends Function {
     public Sum(Function... terms){
         this.elements = new ArrayList<>() ;
         double sum = 0.0 ;
+        boolean check = false ;
         for(Function func: terms){
             if(func.isConstant()){
                 sum += func.evaluate(0.0) ;
             }else {
+                check = true ;
                 elements.add(func);
             }
         }
-        if(sum != 0.0){
+        if((sum != 0.0)||(!check)){
             elements.add(new Constant(sum)) ;
         }
     }

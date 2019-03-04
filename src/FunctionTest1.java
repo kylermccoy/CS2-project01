@@ -65,6 +65,16 @@ public class FunctionTest1 {
         iResult = 0.0;
         iResult = test5.integral( -15, 15, 1000000 );
         System.out.println( "Integral from -15 to 15: " + iResult + "\n" );
+        // test 6
+        Function test6 = new
+                Sum( new Product(new Constant(-1.0), var), var);
+        System.out.println( "Function " + test6 );
+        System.out.println( "Value at -15: " + test6.evaluate( -15.0 ) );
+        System.out.println( "Value at 15: " + test6.evaluate( 15.0 ) );
+        System.out.println( "Derivative: " + test6.derivative() );
+        iResult = 0.0;
+        iResult = test6.integral( -15, 15, 1000000 );
+        System.out.println( "Integral from -15 to 15: " + iResult + "\n" );
     }
 }
 /* EXPECTED OUTPUT
@@ -86,10 +96,10 @@ Value at 25: -73.0
 Derivative: 2.0
 Integral from -15 to 5: -2660.0
 
-Function
+Function 0.0
 Value at -1: 0.0
 Value at 1: 0.0
-Derivative:
+Derivative: 0.0
 Integral from -1 to 1: 0.0
 
 Function x
