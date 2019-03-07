@@ -32,8 +32,7 @@ public class Product extends Function {
         if(constant==0.0){
             this.elements = new ArrayList<>() ;
             elements.add(new Constant(0.0)) ;
-        }
-        if((constant!=1)||(!check)){
+        }else if((constant!=1)||(!check)){
             elements.add(new Constant(constant)) ;
         }
     }
