@@ -97,9 +97,11 @@ public class Sum extends Function {
      * @return boolean
      */
     public boolean isConstant(){
-        boolean result = false ;
+        boolean result = true ;
         for(Function func: elements){
-            result = func.isConstant() ;
+            if(!func.isConstant()){
+                result = false ;
+            }
         }
         return result ;
     }
