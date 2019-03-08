@@ -68,6 +68,16 @@ public class FunctionTest2 {
         iResult = 0.0;
         iResult = test5.integral( 0.0, 10.0, 200 );
         System.out.println( "Integral from 0 to 10 with 200 traps (Approximately): " + iResult + "\n");
+        // test 6
+        Function test6 =
+                new Product();
+        System.out.println( "Function " + test6 );
+        System.out.println( "Value at 0: " + test6.evaluate( 0.0 ) );
+        System.out.println( "Value at 10: " + test6.evaluate( 10.0 ) );
+        System.out.println( "Derivative: " + test6.derivative() );
+        iResult = 0.0;
+        iResult = test6.integral( 0.0, 10.0, 200 );
+        System.out.println( "Integral from 0 to 10 with 200 traps (Approximately): " + iResult + "\n");
     }
 }
 
@@ -102,4 +112,10 @@ Value at 0: 0.0
 Value at 10: -3.2641266653362186
 Derivative: ( cos( x ) * 6.0 )
 Integral from 0 to 10 with 200 traps (Approximately): 11
+
+Function 1.0
+Value at 0: 1.0
+Value at 10: 1.0
+Derivative: 0.0
+Integral from 0 to 10 with 200 traps (Approximately): 10.0
 */

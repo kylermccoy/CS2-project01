@@ -75,6 +75,16 @@ public class FunctionTest1 {
         iResult = 0.0;
         iResult = test6.integral( -15, 15, 1000000 );
         System.out.println( "Integral from -15 to 15: " + iResult + "\n" );
+        // test 7
+        Function test7 =
+                new Sum();
+        System.out.println( "Function " + test7 );
+        System.out.println( "Value at 0: " + test7.evaluate( 0.0 ) );
+        System.out.println( "Value at 10: " + test7.evaluate( 10.0 ) );
+        System.out.println( "Derivative: " + test7.derivative() );
+        iResult = 0.0;
+        iResult = test7.integral( 0.0, 10.0, 200 );
+        System.out.println( "Integral from 0 to 10 with 200 traps (Approximately): " + iResult + "\n");
     }
 }
 /* EXPECTED OUTPUT
@@ -107,4 +117,10 @@ Value at -15: -15.0
 Value at 15: 15.0
 Derivative: 1.0
 Integral from -15 to 15: 0.0
+
+Function 0.0
+Value at 0: 0.0
+Value at 10: 0.0
+Derivative: 0.0
+Integral from 0 to 10 with 200 traps (Approximately): 0.0
 */
